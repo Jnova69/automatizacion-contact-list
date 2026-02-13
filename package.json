@@ -1,0 +1,26 @@
+{
+  "name": "contact-list-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "test": "cucumber-js",
+  "test:ui": "cucumber-js --tags @ui",
+  "test:api": "cucumber-js --tags @api",
+  "test:smoke": "cucumber-js --tags @smoke",
+  "test:headed": "HEADLESS=false cucumber-js --tags @ui",
+  "test:headless": "HEADLESS=true cucumber-js",
+  "test:report": "node -e \"require('child_process').exec('start test-results/cucumber-report.html')\"",
+  "clean": "rm -rf test-results/*.png test-results/*.html test-results/*.json"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.6.0",
+    "@cucumber/pretty-formatter": "^3.0.0",
+    "@playwright/test": "^1.58.2",
+    "node-fetch": "^3.3.2"
+  }
+}
