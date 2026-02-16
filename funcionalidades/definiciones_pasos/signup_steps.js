@@ -1,4 +1,4 @@
-// funcionalidades/step_definitions/signup_steps.js
+// funcionalidades/definiciones_pasos/signup_steps.js
 
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
@@ -8,12 +8,11 @@ const { expect } = require('@playwright/test');
 // ============================================
 
 Given('que el usuario está en la página de registro', async function () {
-  await this.page.goto('https://thinking-tester-contact-list.herokuapp.com/');
-  await this.page.waitForLoadState('networkidle');
+  // Navegar a login primero
+  await this.loginPage.navigate();
   
-  await this.page.click('#signup');
-  await this.page.waitForURL('**/addUser');
-  await this.page.waitForLoadState('networkidle');
+  // Luego ir a signup
+  await this.loginPage.goToSignup();
   
   console.log('✓ Navegó a la página de registro');
 });
@@ -23,41 +22,39 @@ Given('que el usuario está en la página de registro', async function () {
 // ============================================
 
 When('el usuario ingresa nombre {string}', async function (nombre) {
-  await this.page.fill('#firstName', nombre);
+  await this.signupPage.enterFirstName(nombre);
   console.log(`✓ Ingresó nombre: ${nombre}`);
 });
 
 When('el usuario ingresa apellido {string}', async function (apellido) {
-  await this.page.fill('#lastName', apellido);
+  await this.signupPage.enterLastName(apellido);
   console.log(`✓ Ingresó apellido: ${apellido}`);
 });
 
 When('el usuario ingresa email de registro {string}', async function (email) {
+  // Generar timestamp único
   const timestamp = Date.now();
   const emailFinal = email.replace('{{timestamp}}', timestamp);
   
+  // Guardar para uso posterior
   this.emailRegistrado = emailFinal;
   
-  await this.page.fill('#email', emailFinal);
+  await this.signupPage.enterEmail(emailFinal);
   console.log(`✓ Ingresó email: ${emailFinal}`);
 });
 
 When('el usuario ingresa contraseña de registro {string}', async function (password) {
+  // Guardar para uso posterior
   this.passwordRegistrado = password;
   
-  await this.page.fill('#password', password);
+  await this.signupPage.enterPassword(password);
   console.log('✓ Ingresó contraseña');
 });
 
 When('el usuario hace clic en el botón de registro', async function () {
-  await this.page.click('#submit');
-  
-  // Esperar a que navegue a contactList
-  await this.page.waitForURL('**/contactList', { timeout: 10000 });
-  await this.page.waitForLoadState('networkidle');
-  
+  await this.signupPage.clickSubmit();
   console.log('✓ Hizo clic en Submit');
-  console.log('✓ URL actual:', this.page.url());
+  console.log('✓ URL actual:', this.signupPage.getCurrentUrl());
 });
 
 // ============================================
@@ -65,8 +62,7 @@ When('el usuario hace clic en el botón de registro', async function () {
 // ============================================
 
 Then('debería ver un mensaje de bienvenida', async function () {
-  const url = this.page.url();
-  expect(url).toContain('contactList');
-  
+  const isOnContactList = await this.contactListPage.isOnContactListPage();
+  expect(isOnContactList).toBe(true);
   console.log('✓ Registro exitoso - está en contactList');
 });
