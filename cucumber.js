@@ -1,5 +1,6 @@
 module.exports = {
   default: {
+    paths: ['funcionalidades/**/*.feature'],
     require: [
       'funcionalidades/definiciones_pasos/**/*.js',
       'funcionalidades/soporte/**/*.js'

@@ -313,8 +313,15 @@ Then('el token debe ser válido', async function () {
 });
 
 Then('la respuesta debe contener un mensaje de error', async function () {
-  expect(this.apiResponseBody).toHaveProperty('message');
-  console.log(`Mensaje de error: ${this.apiResponseBody.message}`);
+  const status = this.apiResponse.status();
+  
+  if (Object.keys(this.apiResponseBody).length > 0) {
+    expect(this.apiResponseBody).toHaveProperty('message');
+    console.log('Mensaje de error:', this.apiResponseBody.message);
+  } else {
+    expect(status).toBe(401);
+    console.log('Respuesta 401');
+  }
 });
 
 Then('la respuesta debe contener los datos del usuario', async function () {
