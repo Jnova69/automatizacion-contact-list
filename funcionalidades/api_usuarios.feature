@@ -1,5 +1,3 @@
-# funcionalidades/api_usuarios.feature
-
 @api
 Feature: API - Gestión de usuarios
   Como desarrollador

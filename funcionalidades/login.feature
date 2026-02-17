@@ -6,7 +6,7 @@ Feature: Login de usuarios
 
   @smoke @e2e
   Scenario: Flujo completo - Registro, Logout y Login
-    # PASO 1: Registrarse
+    # Registro
     Given que el usuario está en la página de registro
     When el usuario ingresa nombre "Test"
     And el usuario ingresa apellido "User"
@@ -15,10 +15,10 @@ Feature: Login de usuarios
     And el usuario hace clic en el botón de registro
     Then debería ver la página de contactos
     
-    # PASO 2: Hacer logout
+    # Logout
     When el usuario hace logout
     
-    # PASO 3: Hacer login con las mismas credenciales
+    # Login
     Given que el usuario está en la página de login
     When el usuario ingresa el email registrado
     And el usuario ingresa la contraseña registrada

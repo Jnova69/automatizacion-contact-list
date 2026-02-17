@@ -12,7 +12,6 @@ module.exports = {
     formatOptions: {
       snippetInterface: 'async-await'
     },
-    timeout: 120000,
     parallel: 1
   }
 };

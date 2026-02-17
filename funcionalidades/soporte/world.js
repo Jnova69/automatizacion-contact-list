@@ -1,35 +1,28 @@
-// funcionalidades/soporte/world.js
-
 const { 
   setWorldConstructor, 
   Before, 
   After, 
   Status,
-  setDefaultTimeout  // ← AGREGAR ESTO
+  setDefaultTimeout
 } = require('@cucumber/cucumber');
 const { chromium } = require('@playwright/test');
 
-// Importar Page Objects
+// Imports
 const LoginPage = require('../pages/LoginPage');
 const SignupPage = require('../pages/SignupPage');
 const ContactListPage = require('../pages/ContactListPage');
 const AddContactPage = require('../pages/AddContactPage');
 const ContactDetailsPage = require('../pages/ContactDetailsPage');
 
-// ============================================
-// TIMEOUT GLOBAL - SOLUCIÓN PROFESIONAL
-// ============================================
-setDefaultTimeout(120000);  // 2 minutos para todos los steps
+setDefaultTimeout(120000);
 
-// Configuración según el entorno
+// config global
 const config = {
-  // Si HEADLESS no está definido o es 'false', mostrar navegador
   headless: process.env.HEADLESS === 'true' ? true : false,
-  // SlowMo: 0 por defecto (rápido), 300 para demos
   slowMo: parseInt(process.env.SLOWMO || '100')
 };
 
-console.log('🔧 Configuración Playwright:', config);
+console.log('Configuración Playwright:', config);
 
 class CustomWorld {
   constructor() {
@@ -37,7 +30,7 @@ class CustomWorld {
     this.context = null;
     this.page = null;
     
-    // Page Objects (se inicializan en Before)
+    // Page Objects
     this.loginPage = null;
     this.signupPage = null;
     this.contactListPage = null;
@@ -72,11 +65,10 @@ Before(async function () {
   this.addContactPage = new AddContactPage(this.page);
   this.contactDetailsPage = new ContactDetailsPage(this.page);
   
-  console.log('✅ Page Objects inicializados');
+  console.log('Page Objects inicializados');
 });
 
 After(async function (scenario) {
-  // Si la prueba falló, tomar screenshot
   if (scenario.result.status === Status.FAILED) {
     const screenshotPath = `test-results/FAILED_${scenario.pickle.name.replace(/[^a-z0-9]/gi, '_')}.png`;
     await this.page.screenshot({ 
