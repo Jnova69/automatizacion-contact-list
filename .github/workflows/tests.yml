@@ -5,7 +5,7 @@ on:
     branches: [ main, master, develop ]
   pull_request:
     branches: [ main, master, develop ]
-  workflow_dispatch:  # Permite ejecutar manualmente desde GitHub
+  workflow_dispatch:
 
 jobs:
   test-ui:
@@ -14,7 +14,7 @@ jobs:
     
     strategy:
       matrix:
-        browser: [chromium]  # Puedes agregar firefox, webkit
+        browser: [chromium]
     
     steps:
     - name: Checkout code
@@ -112,16 +112,16 @@ jobs:
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "## UI Tests" >> $GITHUB_STEP_SUMMARY
         if [ -f test-results/ui/cucumber-report.json ]; then
-          echo "✅ UI tests completed" >> $GITHUB_STEP_SUMMARY
+          echo "UI tests completed" >> $GITHUB_STEP_SUMMARY
         else
-          echo "❌ UI tests failed" >> $GITHUB_STEP_SUMMARY
+          echo "UI tests failed" >> $GITHUB_STEP_SUMMARY
         fi
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "## API Tests" >> $GITHUB_STEP_SUMMARY
         if [ -f test-results/api/cucumber-report.json ]; then
-          echo "✅ API tests completed" >> $GITHUB_STEP_SUMMARY
+          echo "API tests completed" >> $GITHUB_STEP_SUMMARY
         else
-          echo "❌ API tests failed" >> $GITHUB_STEP_SUMMARY
+          echo "API tests failed" >> $GITHUB_STEP_SUMMARY
         fi
     
     - name: Upload combined report
