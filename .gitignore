@@ -3,17 +3,30 @@ node_modules/
 
 # Resultados de pruebas
 test-results/
+
+# Carpetas de Allure
+allure-results/
+allure-report/
+
+# Screenshots de fallos
 *.png
-*.jpg
-*.mp4
 
-# Reportes
-cucumber-report.html
-cucumber-report.json
+# Variables de entorno
+.env
+.env.local
 
-# Sistema operativo
+# Archivos de sistema
 .DS_Store
 Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos temporales
+*.tmp
+*.temp
 
 # IDEs
 .vscode/
@@ -22,14 +35,10 @@ Thumbs.db
 *.swo
 *~
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Temporal
-*.tmp
-*.temp
-
-# Playwright
+# Archivos de Playwright
+playwright-report/
 playwright/.cache/
+test-results-*
+
+# Lock files (opcional - algunos proyectos los incluyen)
+package-lock.json

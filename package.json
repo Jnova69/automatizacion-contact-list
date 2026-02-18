@@ -8,8 +8,12 @@
     "test:ui": "cucumber-js funcionalidades/ui",
     "test:api": "cucumber-js funcionalidades/api",
     "test:report": "start test-results/cucumber-report.html",
-    "clean": "rmdir /s /q test-results & mkdir test-results",
-    "test:demo": "cross-env HEADLESS=false npm test && start test-results/cucumber-report.html"
+    "allure:generate": "node generate-allure.js",
+    "allure:open": "npx allure open test-results/allure-report",
+    "test:allure": "npm test && npm run allure:generate && npm run allure:open",
+    "test:demo": "cross-env HEADLESS=false SLOWMO=300 npm test && npm run allure:generate && npm run allure:open",
+    "test:demo:html": "cross-env HEADLESS=false SLOWMO=300 npm test && npm run test:report",
+    "clean": "rmdir /s /q test-results & mkdir test-results"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +23,9 @@
     "@cucumber/cucumber": "^12.6.0",
     "@cucumber/pretty-formatter": "^3.0.0",
     "@playwright/test": "^1.58.2",
+    "@wdio/allure-reporter": "^9.24.0",
+    "allure-commandline": "^2.36.0",
+    "allure-js-commons": "^3.4.5",
     "cross-env": "^10.1.0",
     "node-fetch": "^3.3.2"
   }

@@ -1,0 +1,98 @@
+# Contact List - Framework de Automatización de Pruebas
+
+Framework de automatización de pruebas para la aplicación Contact List utilizando Playwright + Cucumber con patrón Page Object Model.
+
+---
+
+## Stack Tecnológico
+
+- **Playwright** 1.58.2 - Automatización de navegador y API
+- **Cucumber** 12.6.0 - Framework BDD
+- **JavaScript** (Node.js 18+)
+- **GitHub Actions** - CI/CD
+
+---
+
+## Estructura del Proyecto
+
+```
+funcionalidades/
+├── ui/                   # Features de interfaz de usuario
+├── api/                  # Features de API REST
+├── pages/                # Page Objects (POM)
+├── definiciones_pasos/   # Step definitions
+└── soporte/              # Configuración de Playwright
+```
+
+---
+
+## Inicio Rápido
+
+```bash
+# Instalación
+npm install
+npx playwright install chromium
+
+# Ejecutar todas las pruebas
+npm test
+
+# Ver reporte HTML
+npm run test:report
+```
+
+---
+
+## Comandos Disponibles
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm test` | Ejecutar todas las pruebas |
+| `npm run test:ui` | Solo pruebas de interfaz de usuario |
+| `npm run test:api` | Solo pruebas de API |
+| `npm run test:demo` | Modo demo (navegador visible + reporte automático) |
+| `npm run test:report` | Abrir reporte HTML |
+| `npm run clean` | Limpiar resultados anteriores |
+
+---
+
+## Ejecución para Demo
+
+```bash
+# Ejecuta todas las pruebas con navegador visible y abre el reporte
+npm run test:demo
+```
+
+---
+
+## Cobertura de Pruebas
+
+- **18 casos de prueba automatizados**
+  - 7 escenarios de UI (Login, Registro, CRUD)
+  - 11 escenarios de API (Usuarios y Contactos)
+- **100% de éxito** en CI/CD
+- **Tiempo promedio de ejecución:** 3 minutos
+
+---
+
+## Patrones de Diseño Implementados
+
+- **Page Object Model** - Elementos y acciones encapsulados por página
+- **BDD (Gherkin)** - Escenarios de prueba legibles
+- **Factory Pattern** - Creación de instancias de navegador
+- **Template Method** - Hooks Before/After
+
+---
+
+## CI/CD
+
+Las pruebas se ejecutan automáticamente en cada push mediante **GitHub Actions**.
+(https://github.com/Jnova69/automatizacion-contact-list/actions)
+
+---
+
+## Documentación
+
+Para la estrategia completa de pruebas, casos detallados y análisis de riesgos, consultar:
+-Plan de Pruebas:(plan:pruebas/Plan_de_Pruebas.docx)
+
+---
