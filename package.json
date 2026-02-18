@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
-    "test:ui":  "cucumber-js funcionalidades/ui",
+    "test:ui": "cucumber-js funcionalidades/ui",
     "test:api": "cucumber-js funcionalidades/api",
     "test:report": "start test-results/cucumber-report.html",
-    "clean": "rmdir /s /q test-results & mkdir test-results"
+    "clean": "rmdir /s /q test-results & mkdir test-results",
+    "test:demo": "cross-env HEADLESS=false npm test && start test-results/cucumber-report.html"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "@cucumber/cucumber": "^12.6.0",
     "@cucumber/pretty-formatter": "^3.0.0",
     "@playwright/test": "^1.58.2",
+    "cross-env": "^10.1.0",
     "node-fetch": "^3.3.2"
   }
 }
